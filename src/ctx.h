@@ -34,7 +34,7 @@ struct ctx_state {
 };
 
 struct ctx_extra {
-  unsigned char __opaque[512];
+  uint8_t __opaque[512];
 } __CTX_ALIGN(16);
 
 #elif defined(i386) || defined(__i386) || defined(__i386__) || \
@@ -47,7 +47,7 @@ struct ctx_state {
 };
 
 struct ctx_extra {
-  unsigned char __opaque[512];
+  uint8_t __opaque[512];
 } __CTX_ALIGN(16);
 
 #elif defined(__arm__) || defined(__thumb__) || defined(__TARGET_ARCH_ARM) || \
