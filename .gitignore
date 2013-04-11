@@ -18,6 +18,7 @@ config.sub
 configure
 depcomp
 install-sh
+libctx.pc
 libtool
 ltmain.sh
 missing

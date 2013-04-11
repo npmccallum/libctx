@@ -9,7 +9,6 @@ AC_CANONICAL_SYSTEM
 AC_SYS_LARGEFILE
 AC_PROG_CC_STDC
 AC_PROG_LIBTOOL
-AC_PROG_SED
 
 AM_INIT_AUTOMAKE([check-news foreign 1.11 -Wall -Wno-portability silent-rules tar-pax no-dist-gzip dist-xz subdir-objects])
 AM_SILENT_RULES([yes])
@@ -39,7 +38,7 @@ esac
 AC_MSG_RESULT([$IMPLEMENTATION])
 AC_SUBST(IMPLEMENTATION)
 
-AC_CONFIG_FILES(Makefile src/Makefile)
+AC_CONFIG_FILES(Makefile libctx.pc src/Makefile)
 AC_OUTPUT
 AC_MSG_RESULT([
         $PACKAGE $VERSION
