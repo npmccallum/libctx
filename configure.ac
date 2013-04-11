@@ -28,12 +28,12 @@ esac
 dnl Check for architecture
 AC_MSG_CHECKING([compatibility ($target_cpu)])
 case $target_cpu in
-         arm*) IMPLEMENTATION=gas-arm-aapcs.lo;;
-        mips*) IMPLEMENTATION=gas-mips-o32.lo;;
-     powerpc*) IMPLEMENTATION=gas-ppc-sysv.lo;;
-       sparc*) IMPLEMENTATION=gas-sparc-sysv.lo;;
-  i?86|x86_64) IMPLEMENTATION=gas-x86_$BITS-sysv.lo;;
-            *) AC_MSG_ERROR([not found]);;
+               arm*) IMPLEMENTATION=gas-arm-aapcs.lo;;
+              mips*) IMPLEMENTATION=gas-mips-o32.lo;;
+           powerpc*) IMPLEMENTATION=gas-ppc-sysv.lo;;
+             sparc*) IMPLEMENTATION=gas-sparc-sysv.lo;;
+  i?86|x86_64|amd64) IMPLEMENTATION=gas-x86_$BITS-sysv.lo;;
+                  *) AC_MSG_ERROR([not found]);;
 esac
 AC_MSG_RESULT([$IMPLEMENTATION])
 AC_SUBST(IMPLEMENTATION)
