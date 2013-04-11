@@ -75,7 +75,8 @@ ctx_new(ctx_stack *stack)
   stack->size += pagesize() * 2 - 1; /* Add a guard page. */
   stack->size = stack->size / pagesize() * pagesize(); /* Round off. */
 
-  if (limit().rlim_max != RLIM_INFINITY && limit().rlim_max < stack->size)
+  if (limit().rlim_max != RLIM_INFINITY &&
+      limit().rlim_max < (rlim_t) stack->size)
     return E2BIG;
 
 #if !defined(MAP_ANON) && !defined(MAP_ANONYMOUS)
