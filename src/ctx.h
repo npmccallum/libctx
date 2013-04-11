@@ -106,19 +106,71 @@ struct ctx_stack {
   size_t size;
 };
 
+/* Allocate a new stack with guard page.
+ *
+ * The desired size is specified in the ctx_stack.size field. If
+ * ctx_stack.size == 0, a default stack size is used. This stack size should
+ * be estimated to be sufficient for "small" functions. If ctx_stack.size is
+ * less than an internal minimum stack size, it will be silently upgraded. This
+ * minimum stack size should be understood to be sufficient for "extra small"
+ * functions.
+ *
+ * Returns 0 on success and errno on error.
+ *
+ * NOTE: You do not have to use this function. If you'd prefer to write your
+ * own stack allocator, you are welcome to.
+ */
 int
 ctx_new(ctx_stack *stack);
 
+/* Free a stack allocated by ctx_new(). */
 void
 ctx_free(ctx_stack stack);
 
+/* Call a function on a new stack.
+ *
+ * The function specified will be called with the given parameter and will
+ * execute on the given stack. Once a set of functions are executing in
+ * independent stacks, you can safely jump between them via ctx_mark() and
+ * ctx_jump().
+ *
+ * If the executed function returns, the return value will be passed to _exit()
+ * and the process will terminate.
+ *
+ * This function does not return.
+ */
 void __CTX_NORETURN
 ctx_call(void *param, ctx_stack stack, int (*func)(void *param));
 #define ctx_call(p, s, f) ctx_call(p, s, (int (*)(void *)) f)
 
+/* Mark a point for a later jump via ctx_jump().
+ *
+ * Calling this function stores the current processor state in state. If extra
+ * is not NULL, extended processor state (including floating point) will be
+ * stored. Once this state is obtained, it may be jumped to via ctx_jump().
+ * This state is reentrant (if your code is!), so you may call ctx_jump()
+ * multiple times on a single saved state.
+ *
+ * If param is not NULL, it will contain the param argument from a ctx_jump()
+ * invocation. On the first return (i.e. before any calls to ctx_jump()), param
+ * will be unmodified.
+ *
+ * This function returns the number of times ctx_jump() has been called on the
+ * processor state.
+ */
 size_t
 ctx_mark(ctx_state *state, ctx_extra *extra, void **param);
 #define ctx_mark(s, f, p) ctx_mark(s, f, (void **) p)
 
+/* Jump to a previously saved state.
+ *
+ * If extra is not NULL, extended processor state (including floating point)
+ * will be restored as well. If the param argument of ctx_mark() is not NULL,
+ * the param argument to ctx_jump() will be stored in the aforementioned
+ * pointer. Execution will resume as if ctx_mark() returned normally except the
+ * return value will be incremented.
+ *
+ * This function does not return.
+ */
 void __CTX_NORETURN
 ctx_jump(ctx_state *state, ctx_extra *extra, void *param);
