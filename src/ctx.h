@@ -174,3 +174,5 @@ ctx_mark(ctx_state *state, ctx_extra *extra, void **param);
  */
 void __CTX_NORETURN
 ctx_jump(ctx_state *state, ctx_extra *extra, void *param);
+
+#undef __CTX_NORETURN
