@@ -7,11 +7,34 @@
 About
 =======
 libctx began life as a port of Boost::Context to C and ended up a substantial
-rewrite for speed (extremely minor) and flexibility. This library enables
-functions like co-routines, exceptions or other neat tricks in C. libctx
-attempts (and succeeds!) at being small and self-contained. While the features
-found here are fun and interesting, some care should be taken in their use
-since, without careful planning, things can go downhill quickly.
+rewrite for speed (extremely minor), flexibility and new architecture support.
+This library enables functions like co-routines, exceptions or other neat
+tricks in C. libctx attempts (and succeeds!) at being small and self-
+contained. While the features found here are fun and interesting, some care
+should be taken in their use since, without careful planning, things can go
+downhill quickly.
+
+Testing
+=======
+libctx has been tested in the following configurations:
+
++----------------+-------+-------+-------+-------+--------+--------+
+|                |  x86  |  arm  | sparc |  ppc  |  mips  | mipsel |
++================+=======+=======+=======+=======+========+========+
+| **Debian**     | 32/64 | v5-v8 | 32/64 | 32/64 |   32   |   32   |
++----------------+-------+-------+-------+-------+--------+--------+
+| **Fedora**     | 32/64 | v5-v8 |       |       |        |        |
++----------------+-------+-------+-------+-------+--------+--------+
+| **FreeBSD**    | 32/64 |       |       |       |        |        |
++----------------+-------+-------+-------+-------+--------+--------+
+| **NetBSD**     | 32/64 |       |       |       |        |        |
++----------------+-------+-------+-------+-------+--------+--------+
+| **OpenBSD**    | 32/64 |       |       |       |        |        |
++----------------+-------+-------+-------+-------+--------+--------+
+| **Apple OS X** | 32/64 |       |       |       |        |        |
++----------------+-------+-------+-------+-------+--------+--------+
+| **Solaris**    | 32/64 |       |       |       |        |        |
++----------------+-------+-------+-------+-------+--------+--------+
 
 Problem Description
 ===================
@@ -44,29 +67,8 @@ is mature, consistent and widely-deployed. Its main problem is that it is
 written in C++ and I wished to use it in C applications. If you are already
 using Boost, you probably want to use Boost::Context. However, if you don't
 want to add a dependency on C++, or you don't plan on using Boost, you might
-find libctx useful.
-
-Testing
-=======
-libctx has been tested in the following configurations:
-
-+----------------+-------+-------+-------+-------+--------+--------+
-|                |  x86  |  arm  | sparc |  ppc  |  mips  | mipsel |
-+================+=======+=======+=======+=======+========+========+
-| **Debian**     | 32/64 | v5-v7 | 32/64 | 32/64 |   32   |   32   |
-+----------------+-------+-------+-------+-------+--------+--------+
-| **Fedora**     | 32/64 | v5-v7 |       |       |        |        |
-+----------------+-------+-------+-------+-------+--------+--------+
-| **FreeBSD**    | 32/64 |       |       |       |        |        |
-+----------------+-------+-------+-------+-------+--------+--------+
-| **NetBSD**     | 32/64 |       |       |       |        |        |
-+----------------+-------+-------+-------+-------+--------+--------+
-| **OpenBSD**    | 32/64 |       |       |       |        |        |
-+----------------+-------+-------+-------+-------+--------+--------+
-| **Apple OS X** | 32/64 |       |       |       |        |        |
-+----------------+-------+-------+-------+-------+--------+--------+
-| **Solaris**    | 32/64 |       |       |       |        |        |
-+----------------+-------+-------+-------+-------+--------+--------+
+find libctx useful. One other reason you may want to use libctx instead of
+Boost::Context is that libctx now supports AARCH64 (a.k.a. ARMv8).
 
 Windows Support
 ===============

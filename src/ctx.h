@@ -61,6 +61,16 @@ struct ctx_extra {
   uintptr_t __opaque[16];
 };
 
+#elif defined(__aarch64__) || defined(aarch64) || defined(__aarch64) || \
+      defined (__AARCH64__)
+struct ctx_state {
+  uintptr_t __opaque[16];
+};
+
+struct ctx_extra {
+  uintptr_t __opaque[8];
+};
+
 #elif defined(__mips__) || defined(mips) || defined(__mips) || defined(__MIPS__)
 struct ctx_state {
   uintptr_t __opaque[13];

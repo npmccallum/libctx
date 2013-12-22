@@ -29,6 +29,7 @@ dnl Check for architecture
 AC_MSG_CHECKING([compatibility ($target_cpu)])
 case $target_cpu in
                arm*) IMPLEMENTATION=gas-arm-aapcs.lo;;
+            aarch64) IMPLEMENTATION=gas-aarch64-aapcs.lo;;
               mips*) IMPLEMENTATION=gas-mips-o32.lo;;
            powerpc*) IMPLEMENTATION=gas-ppc-sysv.lo;;
              sparc*) IMPLEMENTATION=gas-sparc-sysv.lo;;
