@@ -1,0 +1,6 @@
+language: c
+before_script: autoreconf -if
+script: ./configure && make && make check
+compiler:
+  - clang
+  - gcc
