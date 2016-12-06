@@ -1,8 +1,8 @@
-+--------+------------+----------------------------------------------+ 
-| Name   | License    | Description                                  | 
-+========+============+==============================================+ 
-| libctx | Boost v1.0 | A cooperative multitasking library for C/C++ | 
-+--------+------------+----------------------------------------------+ 
++--------+------------+----------------------------------------------+
+| Name   | License    | Description                                  |
++========+============+==============================================+
+| libctx | Boost v1.0 | A cooperative multitasking library for C/C++ |
++--------+------------+----------------------------------------------+
 
 About
 =======
@@ -21,9 +21,9 @@ libctx has been tested in the following configurations:
 +----------------+-------+-------+-------+-------+--------+--------+
 |                |  x86  |  arm  | sparc |  ppc  |  mips  | mipsel |
 +================+=======+=======+=======+=======+========+========+
-| **Debian**     | 32/64 | v5-v8 | 32/64 | 32/64 |   32   |   32   |
+| **Debian**     | 32/64 | 32/64 | 32/64 | 32/64 |   32   |   32   |
 +----------------+-------+-------+-------+-------+--------+--------+
-| **Fedora**     | 32/64 | v5-v8 |       |       |        |        |
+| **Fedora**     | 32/64 | 32/64 |       |       |        |        |
 +----------------+-------+-------+-------+-------+--------+--------+
 | **FreeBSD**    | 32/64 |       |       |       |        |        |
 +----------------+-------+-------+-------+-------+--------+--------+
@@ -68,7 +68,7 @@ written in C++ and I wished to use it in C applications. If you are already
 using Boost, you probably want to use Boost::Context. However, if you don't
 want to add a dependency on C++, or you don't plan on using Boost, you might
 find libctx useful. One other reason you may want to use libctx instead of
-Boost::Context is that libctx now supports AARCH64 (a.k.a. ARMv8).
+Boost::Context is that libctx supports AARCH64 (a.k.a. ARMv8).
 
 Windows Support
 ===============
