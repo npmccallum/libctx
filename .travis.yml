@@ -1,6 +1,65 @@
+sudo: required
+
 language: c
-before_script: autoreconf -if
-script: ./configure && make && make check
+
+services:
+  - docker
+
+#osx_image: xcode8
+#os:
+#  - linux
+#  - osx
+
 compiler:
   - clang
   - gcc
+
+env:
+  - DISTRO=multiarch/fedora:25-aarch64
+  - DISTRO=multiarch/fedora:25-armhfp
+  - DISTRO=multiarch/fedora:25-x86_64
+
+  - DISTRO=multiarch/centos:7-aarch64-iso
+  - DISTRO=multiarch/centos:7-armhfp-iso
+  - DISTRO=multiarch/centos:7-i386-iso
+  - DISTRO=multiarch/centos:7-x86_64-iso
+
+  - DISTRO=multiarch/debian-debootstrap:amd64-stretch
+  - DISTRO=multiarch/debian-debootstrap:arm64-stretch
+  - DISTRO=multiarch/debian-debootstrap:armel-stretch
+  - DISTRO=multiarch/debian-debootstrap:armhf-stretch
+  - DISTRO=multiarch/debian-debootstrap:i386-stretch
+  - DISTRO=multiarch/debian-debootstrap:mips-stretch
+  - DISTRO=multiarch/debian-debootstrap:mipsel-stretch
+  - DISTRO=multiarch/debian-debootstrap:powerpc-stretch
+  - DISTRO=multiarch/debian-debootstrap:ppc64el-stretch
+  - DISTRO=multiarch/debian-debootstrap:s390x-stretch
+
+  - DISTRO=multiarch/debian-debootstrap:amd64-jessie
+  - DISTRO=multiarch/debian-debootstrap:arm64-jessie
+  - DISTRO=multiarch/debian-debootstrap:armel-jessie
+  - DISTRO=multiarch/debian-debootstrap:armhf-jessie
+  - DISTRO=multiarch/debian-debootstrap:i386-jessie
+  - DISTRO=multiarch/debian-debootstrap:mips-jessie
+  - DISTRO=multiarch/debian-debootstrap:mipsel-jessie
+  - DISTRO=multiarch/debian-debootstrap:powerpc-jessie
+  - DISTRO=multiarch/debian-debootstrap:ppc64el-jessie
+  - DISTRO=multiarch/debian-debootstrap:s390x-jessie
+
+  - DISTRO=multiarch/ubuntu-debootstrap:amd64-yakkety
+  - DISTRO=multiarch/ubuntu-debootstrap:arm64-yakkety
+  - DISTRO=multiarch/ubuntu-debootstrap:armhf-yakkety
+  - DISTRO=multiarch/ubuntu-debootstrap:i386-yakkety
+  - DISTRO=multiarch/ubuntu-debootstrap:powerpc-yakkety
+  - DISTRO=multiarch/ubuntu-debootstrap:ppc64el-yakkety
+
+  - DISTRO=multiarch/ubuntu-debootstrap:amd64-xenial
+  - DISTRO=multiarch/ubuntu-debootstrap:arm64-xenial
+  - DISTRO=multiarch/ubuntu-debootstrap:armhf-xenial
+  - DISTRO=multiarch/ubuntu-debootstrap:i386-xenial
+  - DISTRO=multiarch/ubuntu-debootstrap:powerpc-xenial
+  - DISTRO=multiarch/ubuntu-debootstrap:ppc64el-xenial
+
+script:
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  - docker run -v `pwd`:/tmp/test -w /tmp/test -e CC=$CC $DISTRO ./.travis.sh $DISTRO
